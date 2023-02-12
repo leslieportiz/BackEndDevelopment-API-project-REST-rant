@@ -12,6 +12,7 @@ For the first part, I have created an index, places and 404 page.
 localhost:3000/
 !image1.png
 
+Routes Table
 |Method|Path|Purpose|
 |:...:|:...:|:...:|
 |GET|/|Home page|
@@ -25,3 +26,11 @@ localhost:3000/
 |POST|/places/:id/rant|Create a rant (comment) about a particular place|
 |DELETE|/places/:id/rant/:rantId|Delete a rant (comment) about a particular place|
 |GET|*|404 page (matches any route not defined above)|
+
+Places/Restaurants Table
+|Name |City |State|Cuisine|Pic  |
+|:...:|:...:|:...:|:...:  |:...:|
+|Texas de Brazil|Las Vegas|Nevada|Brazilian|texasDeBrazil.png|
+|Fogo de chao|Las Vegas|Nevada|Brazilian|fogoDeChao.png|
+|Cheesecake Factory|Henderson|Nevada|American|cheesecakeFactory.png|
+
