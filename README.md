@@ -31,6 +31,6 @@ Places/Restaurants Table
 |Name |City |State|Cuisine|Pic  |
 |:...:|:...:|:...:|:...:  |:...:|
 |Texas de Brazil|Las Vegas|Nevada|Brazilian|texasDeBrazil.png|
-|Fogo de chao|Las Vegas|Nevada|Brazilian|fogoDeChao.png|
+|Fogo de chao|Las Vegas|Nevada|Brazilian|fogoDeChao.png| 
 |Cheesecake Factory|Henderson|Nevada|American|cheesecakeFactory.png|
 
