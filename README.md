@@ -10,4 +10,7 @@ I will use the functions GEt and PORT to set up the website.
 For the first part, I have created an index, places and 404 page. 
 
 localhost:3000/
-image.png
+!image1.png
+|test1|test2|
+|...|...|
+|content|content|
