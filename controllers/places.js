@@ -7,21 +7,21 @@ router.get('/', (req, res) => {
             city: 'Las Vegas',
             state: 'Nevada',
             cuisine: 'Brazilian',
-            pic: 'http://placekitten.com/250/250'
+            pic: '/images/texas-de-brazil.jpg'
         },
         {
             name: 'Fogo de Chao',
             city: 'Las Vegas',
             state: 'Nevada',
             cuisine: 'Brazilian',
-            pic: 'http://placekitten.com/250/250'
+            pic: '/images/fogo-de-chao.jpg'
         },
         {
             name: 'Cheesecake Factory',
             city: 'Henderson',
             state: 'Nevada',
             cuisine: 'American',
-            pic: 'http://placekitten.com/250/250'
+            pic: '/images/cheesecake-factory.jpg'
         }
     ]
     res.render('places/index', {places})

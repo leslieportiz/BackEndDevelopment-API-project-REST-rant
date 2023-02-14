@@ -27,7 +27,7 @@ Routes Table
 |DELETE|/places/:id/rant/:rantId|Delete a rant (comment) about a particular place|
 |GET|*|404 page (matches any route not defined above)|
 
-Places/Restaurants Table
+Places to Rant or Rave About Table
 |Name |City |State|Cuisine|Pic  |
 |:...:|:...:|:...:|:...:  |:...:|
 |Texas de Brazil|Las Vegas|Nevada|Brazilian|texasDeBrazil.png|
