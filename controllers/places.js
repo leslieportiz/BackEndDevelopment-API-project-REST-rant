@@ -1,6 +1,19 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
 
+router.get('/:id', (req, res) => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+        res.render('places/show', { place: places[id] })
+    }
+})
+
 router.get('/new', (req, res) => {
     res.render('places/new')
 })
@@ -18,8 +31,6 @@ router.post('/', (req, res) => {
         req.body.state = 'USA'
     }
     places.push(req.body)
-    console.log(req.body)
-    console.log("not showing the new item's cuisine")
     res.redirect('/places')
 })
 
