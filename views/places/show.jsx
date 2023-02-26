@@ -11,10 +11,14 @@ function show(data) {
         <p>Not Rated</p>
         <h2>Description</h2>
         <p>Located in {data.place.city}, {data.place.state} and serving {data.place.cuisine} cuisine.</p>
+        <p>
+          {data.place.showEstablished()}
+        </p>
+
         <h2>Comments</h2>
         <p>No comments yet</p>
-       
-       <a href={`/places/${data.id}/edit`} className="btn btn-warning">
+
+        <a href={`/places/${data.id}/edit`} className="btn btn-warning">
           Edit
         </a>
 
@@ -30,3 +34,4 @@ function show(data) {
 }
 
 module.exports = show
+
