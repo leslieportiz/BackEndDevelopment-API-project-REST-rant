@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
-
+const { ObjectId } = require('mongoose');
+let id
 router.get('/', (req, res) => {
     db.Place.find()
     .then((places) => {
@@ -13,6 +14,18 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  if (!req.body.pic){
+    req.body.pic = 'http://placekitten.com/350/350'
+  }
+  if (!req.body.cuisines){
+    req.body.cuisines = 'Fast food'
+  }
+  if (!req.body.city){
+    req.body.city = 'North Las Vegas'
+  }
+  if (!req.body.state){
+    req.body.state = 'Nevada'
+  }
     db.Place.create(req.body)
     .then(() => {
         res.redirect('/places')
@@ -30,6 +43,7 @@ router.post('/', (req, res) => {
         else {
             res.render('error404')
         }
+
     })
 })
 
@@ -39,14 +53,15 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    db.Place.findById(req.params.id)
-    .then(place => {
-        res.render('places/show', { place })
-    })
-    .catch(err => {
-        console.log('err', err)
-        res.render('error404')
-    })
+  id = req.params.id
+  db.Place.findById(req.params.id)
+  .then(place => {
+      res.render('places/show', { place })
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
 })
 
 router.put('/:id', (req, res) => {
@@ -54,12 +69,36 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  res.send('DELETE /places/:id stub')
+  db.Place.findByIdAndDelete(id,(err,docs)=>{
+    if(err){
+      console.log("Delete Error!")
+      res.render('error404')
+    }
+    else{
+      console.log("Deleted Item")
+      res.redirect('/places')
+    }
+  })
 })
 
 router.get('/:id/edit', (req, res) => {
-  res.send('GET edit form stub')
-})
+  // console.log (req.route)
+  db.Place.findById(id)
+    .then(place => {
+      console.log("Edit id")
+      console.log(place)
+      //need to find a way to isolate _id so its just the hexadecimal value without ObjectId
+      //ObjectId making it undefined
+      res.render('places/edit', { place: place })
+      // console.log(place._id)
+    })
+    .catch(err => {
+      console.log("Error Edit")
+      res.render('error404')
+    })
+
+  })
+
 
 router.post('/:id/rant', (req, res) => {
   res.send('GET /places/:id/rant stub')
@@ -132,8 +171,8 @@ module.exports = router
 //   })
   
 
-// router.get('/:id/edit', (req, res) => {
-//     let id = Number(req.params.id)
+  // router.get('/:id/edit', (req, res) => {
+  //     let id = Number(req.params.id)
 //     if (isNaN(id)) {
 //         res.render('error404')
 //     }
@@ -143,8 +182,6 @@ module.exports = router
 //     else {
 //           res.render('places/edit', { place: places[id] })
 //     }
-// })
-
 
 // router.post('/', (req, res) => {
 //     // console.log(req.body)

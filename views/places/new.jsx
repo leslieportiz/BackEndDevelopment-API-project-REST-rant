@@ -34,8 +34,8 @@ function new_form() {
                         <input className="form-control" id="state" name="state" />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cuisine">Cuisine</label>
-                        <input className="form-control" id="cuisine" name="cuisine" />
+                        <label htmlFor="cuisines">Cuisine</label>
+                        <input className="form-control" id="cuisines" name="cuisines" />
                     </div>
                     <div className="form-group">
                         <label for="founded">Founded Year</label>
