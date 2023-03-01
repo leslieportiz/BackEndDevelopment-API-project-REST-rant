@@ -14,18 +14,18 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  // if (!req.body.pic){
-  //   req.body.pic = 'http://placekitten.com/350/350'
-  // }
-  // if (!req.body.cuisines){
-  //   req.body.cuisines = 'Fast food'
-  // }
-  // if (!req.body.city){
-  //   req.body.city = 'North Las Vegas'
-  // }
-  // if (!req.body.state){
-  //   req.body.state = 'Nevada'
-  // }
+  if (!req.body.pic){
+    req.body.pic = 'http://placekitten.com/350/350'
+  }
+  if (!req.body.cuisines){
+    req.body.cuisines = 'Fast food'
+  }
+  if (!req.body.city){
+    req.body.city = 'North Las Vegas'
+  }
+  if (!req.body.state){
+    req.body.state = 'Nevada'
+  }
     db.Place.create(req.body)
     .then(() => {
         res.redirect('/places')
@@ -67,6 +67,18 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
+  if (!req.body.pic){
+    req.body.pic = 'http://placekitten.com/350/350'
+  }
+  if (!req.body.cuisines){
+    req.body.cuisines = 'Fast food'
+  }
+  if (!req.body.city){
+    req.body.city = 'North Las Vegas'
+  }
+  if (!req.body.state){
+    req.body.state = 'Nevada'
+  }
   db.Place.findByIdAndUpdate(req.params.id,req.body)
   .then(()=>{
     res.redirect(`${req.params.id}`)
