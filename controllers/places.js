@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const db = require('../models')
-const { ObjectId } = require('mongoose');
-let id
+
+
 router.get('/', (req, res) => {
     db.Place.find()
     .then((places) => {
@@ -14,36 +14,39 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  if (!req.body.pic){
-    req.body.pic = 'http://placekitten.com/350/350'
-  }
-  if (!req.body.cuisines){
-    req.body.cuisines = 'Fast food'
-  }
-  if (!req.body.city){
-    req.body.city = 'North Las Vegas'
-  }
-  if (!req.body.state){
-    req.body.state = 'Nevada'
-  }
+  // if (!req.body.pic){
+  //   req.body.pic = 'http://placekitten.com/350/350'
+  // }
+  // if (!req.body.cuisines){
+  //   req.body.cuisines = 'Fast food'
+  // }
+  // if (!req.body.city){
+  //   req.body.city = 'North Las Vegas'
+  // }
+  // if (!req.body.state){
+  //   req.body.state = 'Nevada'
+  // }
     db.Place.create(req.body)
     .then(() => {
         res.redirect('/places')
     })
-    .catch(err => {
-        if (err && err.name == 'ValidationError') {
-            let message = 'Validation Error: '
-            for (var field in err.errors) {
-                message += `${field} was ${err.errors[field].value}. `
-                message += `${err.errors[field].message}`
-            }
-            console.log('Validation error message', message)
-            res.render('places/new', { message })
-        }
-        else {
-            res.render('error404')
-        }
+    // .catch(err => {
+    //     if (err && err.name == 'ValidationError') {
+    //         let message = 'Validation Error: '
+    //         for (var field in err.errors) {
+    //             message += `${field} was ${err.errors[field].value}. `
+    //             message += `${err.errors[field].message}`
+    //         }
+    //         console.log('Validation error message', message)
+    //         res.render('places/new', { message })
+    //     }
+    //     else {
+    //         res.render('error404')
+    //     }
 
+    // })
+    .catch(err=>{
+      res.render('error404')
     })
 })
 
@@ -53,7 +56,6 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  id = req.params.id
   db.Place.findById(req.params.id)
   .then(place => {
       res.render('places/show', { place })
@@ -65,31 +67,36 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  res.send('PUT /places/:id stub')
+  db.Place.findByIdAndUpdate(req.params.id,req.body)
+  .then(()=>{
+    res.redirect(`${req.params.id}`)
+  })
+  .catch(err => {
+    console.log("Error Edit")
+    res.render('error404')
+  })
 })
 
 router.delete('/:id', (req, res) => {
-  db.Place.findByIdAndDelete(id,(err,docs)=>{
-    if(err){
-      console.log("Delete Error!")
-      res.render('error404')
-    }
-    else{
-      console.log("Deleted Item")
-      res.redirect('/places')
-    }
+  db.Place.findByIdAndDelete(req.params.id)
+  .then(place => {
+    console.log("Deleted Item")
+    res.redirect('/places')
   })
+  .catch(err=>{
+      console.log("Delete Error!")
+     res.render('error404')
+})
 })
 
 router.get('/:id/edit', (req, res) => {
   // console.log (req.route)
-  db.Place.findById(id)
+  db.Place.findById(req.params.id)
     .then(place => {
       console.log("Edit id")
       console.log(place)
-      //need to find a way to isolate _id so its just the hexadecimal value without ObjectId
-      //ObjectId making it undefined
-      res.render('places/edit', { place: place })
+
+      res.render('places/edit', { place })
       // console.log(place._id)
     })
     .catch(err => {
