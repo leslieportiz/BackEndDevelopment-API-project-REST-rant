@@ -15,16 +15,16 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   if (!req.body.pic){
-    req.body.pic = 'http://placekitten.com/350/350'
+    req.body.pic = undefined
   }
   if (!req.body.cuisines){
-    req.body.cuisines = 'Fast food'
+    req.body.cuisines = undefined
   }
   if (!req.body.city){
-    req.body.city = 'North Las Vegas'
+    req.body.city = undefined
   }
   if (!req.body.state){
-    req.body.state = 'Nevada'
+    req.body.state = undefined
   }
     db.Place.create(req.body)
     .then(() => {
@@ -68,16 +68,16 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   if (!req.body.pic){
-    req.body.pic = 'http://placekitten.com/350/350'
+    req.body.pic = undefined
   }
   if (!req.body.cuisines){
-    req.body.cuisines = 'Fast food'
+    req.body.cuisines = undefined
   }
   if (!req.body.city){
-    req.body.city = 'North Las Vegas'
+    req.body.city = undefined
   }
   if (!req.body.state){
-    req.body.state = 'Nevada'
+    req.body.state = undefined
   }
   db.Place.findByIdAndUpdate(req.params.id,req.body)
   .then(()=>{
