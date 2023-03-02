@@ -38,7 +38,7 @@ function edit_form (data) {
                             defaultValue={data.place.founded} />
                     </div>
 
-                    <input className="btn btn-primary" type="submit" defaultValue='Update'  />
+                    <input className="btn btn-primary" type="submit" value='Update Place'  />
                 </form>
             </main>
         </Def>
