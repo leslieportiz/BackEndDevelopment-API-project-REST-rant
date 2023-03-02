@@ -2,6 +2,23 @@ const React = require('react')
 const Def = require('../default')
 
 function show(data) {
+  let comments = (
+    <h3 className="inactive"> No Comments Yet! </h3>
+  )
+  if (data.place.comments.length) {
+    comments = data.place.comments.map(c => {
+      return (
+        <div className="border">
+          <h2 className="rant">{c.rant ? 'Rant! :(' : 'Rave! :)'}</h2>
+          <p>{c.content}</p>
+          <p>
+            <stong>- {c.author}</stong>
+          </p>
+          <h4>Rating: {c.stars}</h4>
+        </div>
+      )
+    })
+  }
   return (
     <Def>
       <main>
@@ -16,7 +33,7 @@ function show(data) {
         </p>
 
         <h2>Comments</h2>
-        <p>No comments yet</p>
+        {comments}
 
         <a href={`/places/${data.place._id}/edit`} className="btn btn-warning">
           Edit
