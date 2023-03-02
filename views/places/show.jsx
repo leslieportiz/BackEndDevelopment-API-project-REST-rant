@@ -44,7 +44,29 @@ function show(data) {
             Delete
           </button>
         </form>
+        <form method="POST" action={`/places/${data.place._id}/comment`}>
+          <div className="form-group">
+            <label htmlFor="author">Author</label>
+            <input className="form-control" type="text" id="author" name="author" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="rant">Rant</label>
+            <input className="form-control" type="checkbox" id="rant" name="rant" value="true" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="stars">Stars</label>
+            <input className="form-control" type="number" id="stars" name="stars" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="content">Comment</label>
+            <input className="form-control" type="textarea" id="content" name="content" />
+          </div>
 
+
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </main>
     </Def>
   )
